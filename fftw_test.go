@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func ExamplePlanMany1D() {
+func ExamplePlanManyC2C() {
 	N := 8
 	data := make([]complex64, N)
 
@@ -34,10 +34,10 @@ func ExamplePlanMany1D() {
 	// [(8+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
 }
 
-func ExamplePlanMany2D() {
+func ExamplePlanManyZ2Z() {
 	n := [2]int{2, 3}
-	data := make([]complex64, n[0]*n[1])
-	matrix := ReshapeC2(data, n)
+	data := make([]complex128, n[0]*n[1])
+	matrix := ReshapeZ2(data, n)
 
 	howmany := 1
 	idist := 0   // unused because howmany = 1
@@ -47,7 +47,7 @@ func ExamplePlanMany2D() {
 	inembed := n[:]
 	onembed := n[:]
 
-	plan := PlanManyC2C(n[:], howmany, data, inembed, istride, idist, data, onembed, ostride, odist, FORWARD, ESTIMATE)
+	plan := PlanManyZ2Z(n[:], howmany, data, inembed, istride, idist, data, onembed, ostride, odist, FORWARD, ESTIMATE)
 	defer plan.Destroy()
 
 	data[0] = 1
