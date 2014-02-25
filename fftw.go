@@ -14,7 +14,7 @@ type PlanC2C struct {
 }
 
 // Wrapper for fftwf_plan_many_dft:
-// 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html#Advanced-Complex-DFTs
+// 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html
 func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, idist int,
 	out []complex64, onembed []int, ostride, odist int, sign int, flags Flag) *PlanC2C {
 
@@ -44,7 +44,7 @@ type PlanR2C struct {
 }
 
 // Wrapper for fftwf_plan_many_dft_r2c:
-// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html#Advanced-Real_002ddata-DFTs
+// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyR2C(n []int, howmany int, in []float32, inembed []int, istride, idist int,
 	out []complex64, onembed []int, ostride, odist int, flags Flag) *PlanR2C {
 
@@ -74,7 +74,7 @@ type PlanC2R struct {
 }
 
 // Wrapper for fftwf_plan_many_dft_c2r:
-// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html#Advanced-Real_002ddata-DFTs
+// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyC2R(n []int, howmany int, in []complex64, inembed []int, istride, idist int,
 	out []float32, onembed []int, ostride, odist int, flags Flag) *PlanC2R {
 
@@ -117,7 +117,7 @@ type PlanZ2Z struct {
 }
 
 // Wrapper for fftw_plan_many_dft:
-// 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html#Advanced-Complex-DFTs
+// 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html
 func PlanManyZ2Z(n []int, howmany int, in []complex128, inembed []int, istride, idist int,
 	out []complex128, onembed []int, ostride, odist int, sign int, flags Flag) *PlanZ2Z {
 
@@ -147,7 +147,7 @@ type PlanD2Z struct {
 }
 
 // Wrapper for fftw_plan_many_dft_r2c:
-// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html#Advanced-Real_002ddata-DFTs
+// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyD2Z(n []int, howmany int, in []float64, inembed []int, istride, idist int,
 	out []complex128, onembed []int, ostride, odist int, flags Flag) *PlanD2Z {
 
@@ -177,7 +177,7 @@ type PlanZ2D struct {
 }
 
 // Wrapper for fftw_plan_many_dft_c2r:
-// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html#Advanced-Real_002ddata-DFTs
+// 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyZ2D(n []int, howmany int, in []complex128, inembed []int, istride, idist int,
 	out []float64, onembed []int, ostride, odist int, flags Flag) *PlanZ2D {
 
