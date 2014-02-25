@@ -26,6 +26,27 @@ func ExamplePlanC2C() {
 	// [(8+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
 }
 
+func ExamplePlanZ2Z() {
+	N := 8
+	data := make([]complex128, N)
+
+	n := []int{N}
+	plan := PlanZ2Z(n, data, data, FORWARD, ESTIMATE)
+	defer plan.Destroy()
+
+	data[0] = 1
+	fmt.Println(data)
+	plan.Execute()
+	fmt.Println(data)
+	plan.Execute()
+	fmt.Println(data)
+
+	// Output:
+	// [(1+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
+	// [(1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i)]
+	// [(8+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
+}
+
 func ExamplePlanManyC2C() {
 	N := 8
 	data := make([]complex64, N)

@@ -126,6 +126,19 @@ func PlanManyZ2Z(n []int, howmany int, in []complex128, inembed []int, istride, 
 	return &Z2ZPlan{unsafe.Pointer(p), in, out}
 }
 
+// Provides the functionality of fftw_plan_dft:
+// 	http://www.fftw.org/doc/Complex-DFTs.html
+func PlanZ2Z(n []int, in []complex128, out []complex128, sign int, flags Flag) *Z2ZPlan {
+	howmany := 1
+	idist := 0
+	odist := 0
+	istride := 1
+	ostride := 1
+	inembed := n
+	onembed := n
+	return PlanManyZ2Z(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, flags)
+}
+
 func (p *Z2ZPlan) Execute() {
 	double.Execute(p.handle)
 }
