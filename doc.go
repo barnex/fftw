@@ -15,6 +15,6 @@
  
  	http://www.fftw.org/doc/
 
- Go wrapper written by Arne Vansteenkiste <arne@vansteenkiste.io>, 2014.
+ Go wrappers and utility functions (Cast, Reshape) written by Arne Vansteenkiste <arne@vansteenkiste.io>, 2014.
 */
 package fftw
