@@ -13,6 +13,8 @@
  
  Non-free versions of FFTW are available under terms different from those of the General Public License. (e.g. they do not require you to accompany any object code using FFTW with the corresponding source code.) For these alternative terms you must purchase a license from MIT's Technology Licensing Office. Users interested in such a license should contact us (fftw@fftw.org) for more information.
  
+ 	http://www.fftw.org/doc/
+
  Go wrapper written by Arne Vansteenkiste <arne@vansteenkiste.io>, 2014.
 */
 package fftw

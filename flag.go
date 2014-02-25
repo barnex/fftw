@@ -7,7 +7,8 @@ import "C"
 
 import "fmt"
 
-// FFTW planning flag
+// FFTW planner flag:
+// 	http://www.fftw.org/doc/Planner-Flags.html#Planner-Flags
 type Flag uint
 
 const (
