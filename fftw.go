@@ -1,4 +1,3 @@
-// Go wrapper for FFTW3.3.3, statically linked.
 package fftw
 
 import (
