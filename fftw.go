@@ -4,8 +4,13 @@ import (
 	"fmt"
 	"github.com/barnex/fftw/double"
 	"github.com/barnex/fftw/float"
+	"sync"
 	"unsafe"
 )
+
+// Protects planners from concurrent modification.
+// 	http://www.fftw.org/doc/Thread-safety.html
+var lock sync.Mutex
 
 // Plan for complex64 to complex64 FFT
 type C2CPlan struct {
@@ -17,6 +22,8 @@ type C2CPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html
 func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, idist int,
 	out []complex64, onembed []int, ostride, odist int, sign int, flags Flag) *C2CPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := float.PlanManyDft(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, uint(flags))
 	if p == nil {
@@ -43,6 +50,8 @@ func (p *C2CPlan) Execute() {
 }
 
 func (p *C2CPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	float.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil
@@ -60,6 +69,8 @@ type R2CPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyR2C(n []int, howmany int, in []float32, inembed []int, istride, idist int,
 	out []complex64, onembed []int, ostride, odist int, flags Flag) *R2CPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := float.PlanManyDftR2C(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, uint(flags))
 	if p == nil {
@@ -73,6 +84,8 @@ func (p *R2CPlan) Execute() {
 }
 
 func (p *R2CPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	float.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil
@@ -89,6 +102,8 @@ type C2RPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyC2R(n []int, howmany int, in []complex64, inembed []int, istride, idist int,
 	out []float32, onembed []int, ostride, odist int, flags Flag) *C2RPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := float.PlanManyDftC2R(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, uint(flags))
 	if p == nil {
@@ -102,6 +117,8 @@ func (p *C2RPlan) Execute() {
 }
 
 func (p *C2RPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	float.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil
@@ -118,6 +135,8 @@ type Z2ZPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html
 func PlanManyZ2Z(n []int, howmany int, in []complex128, inembed []int, istride, idist int,
 	out []complex128, onembed []int, ostride, odist int, sign int, flags Flag) *Z2ZPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := double.PlanManyDft(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, uint(flags))
 	if p == nil {
@@ -144,6 +163,8 @@ func (p *Z2ZPlan) Execute() {
 }
 
 func (p *Z2ZPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	double.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil
@@ -161,6 +182,8 @@ type D2ZPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyD2Z(n []int, howmany int, in []float64, inembed []int, istride, idist int,
 	out []complex128, onembed []int, ostride, odist int, flags Flag) *D2ZPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := double.PlanManyDftR2C(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, uint(flags))
 	if p == nil {
@@ -174,6 +197,8 @@ func (p *D2ZPlan) Execute() {
 }
 
 func (p *D2ZPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	double.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil
@@ -190,6 +215,8 @@ type Z2DPlan struct {
 // 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
 func PlanManyZ2D(n []int, howmany int, in []complex128, inembed []int, istride, idist int,
 	out []float64, onembed []int, ostride, odist int, flags Flag) *Z2DPlan {
+	lock.Lock()
+	defer lock.Unlock()
 
 	p := double.PlanManyDftC2R(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, uint(flags))
 	if p == nil {
@@ -203,6 +230,8 @@ func (p *Z2DPlan) Execute() {
 }
 
 func (p *Z2DPlan) Destroy() {
+	lock.Lock()
+	defer lock.Unlock()
 	double.DestroyPlan(p.handle)
 	p.handle = nil
 	p.in = nil

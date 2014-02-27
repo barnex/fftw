@@ -1,6 +1,6 @@
 package fftw
 
-import(
+import (
 	"github.com/barnex/fftw/double"
 	"github.com/barnex/fftw/float"
 )
