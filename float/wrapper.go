@@ -99,6 +99,21 @@ func DestroyPlan(plan unsafe.Pointer) {
 	C.fftwf_destroy_plan(C.fftwf_plan(plan))
 }
 
+// Wrapper for fftwf_init_threads.
+// Internal but exported for use by package fftw
+func InitThreads() {
+	ret := C.fftwf_init_threads()
+	if ret == 0 {
+		panic("fftwf_init_threads failed")
+	}
+}
+
+// Wrapper for fftwf_init_with_nthreads.
+// Internal but exported for use by package fftw
+func PlanWithNThreads(nthreads int) {
+	C.fftwf_plan_with_nthreads(C.int(nthreads))
+}
+
 // C.int is 32 bit even on a 64bit system, but Go int is 32 or 64 bit.
 // So we need to convert in order to pass C int arrays.
 func to32bit(a []int) []int32 {
