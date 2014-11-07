@@ -1,3 +1,5 @@
+Note: this package is broken since recent updates.
+
 fftw
 ====
 
