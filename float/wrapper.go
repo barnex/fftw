@@ -1,7 +1,7 @@
 // Internally used package float provides low-level wrappers for libfftw3f
 package float
 
-//#cgo CFLAGS: -mavx
+//#cgo CFLAGS: -O0
 //#cgo CFLAGS: -std=gnu99 -DHAVE_CONFIG_H
 //#cgo LDFLAGS: -lm
 //#include "fftw3.h"

@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2003, 2007-11 Matteo Frigo
- * Copyright (c) 2003, 2007-11 Massachusetts Institute of Technology
+ * Copyright (c) 2003, 2007-14 Matteo Frigo
+ * Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,25 @@
  */
 
 #include "api.h"
+
+char *X(sprint_plan)(const X(plan) p)
+{
+     int cnt;
+     char *s;
+     plan *pln = p->pln;
+
+     printer *pr = X(mkprinter_cnt)(&cnt);
+     pln->adt->print(pln, pr);
+     X(printer_destroy)(pr);
+
+     s = (char *) malloc(sizeof(char) * (cnt + 1));
+     if (s) {
+          pr = X(mkprinter_str)(s);
+          pln->adt->print(pln, pr);
+          X(printer_destroy)(pr);
+     }
+     return s;
+}
 
 void X(fprint_plan)(const X(plan) p, FILE *output_file)
 {
