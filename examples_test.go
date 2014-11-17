@@ -1,7 +1,6 @@
 package fftw
 
 import (
-	//"testing"
 	"fmt"
 )
 
