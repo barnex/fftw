@@ -28,30 +28,85 @@ func ExamplePlanC2C() {
 
 
 func ExamplePlanR2C() {
-	N := 8
-	data := make([]complex64, N)
+	N := 5
+	in := make([]float32, N)
+	out := make([]complex64, N/2+1)
 
 	n := []int{N}
-	plan := PlanR2C(n, data, data, FORWARD, ESTIMATE)
+	plan := PlanR2C(n, in, out, ESTIMATE)
 	defer plan.Destroy()
 
-	data[0] = 1
-	fmt.Println(data)
+	in[0] = 1
+	fmt.Println(in)
 	plan.Execute()
-	fmt.Println(data)
-	plan.Execute()
-	fmt.Println(data)
+	fmt.Println(out)
 
 	// Output:
-	// [(1+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
-	// [(1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i) (1+0i)]
-	// [(8+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i) (0+0i)]
+	// [1 0 0 0 0]
+	// [(1+0i) (1+0i) (1+0i)]
 }
 
 
 func ExamplePlanC2R() {
+	N := 5
+	in := make([]complex64, N/2+1)
+	out := make([]float32, N)
 
+	n := []int{N}
+	plan := PlanC2R(n, in, out, ESTIMATE)
+	defer plan.Destroy()
+
+	in[0] = 1
+	fmt.Println(in)
+	plan.Execute()
+	fmt.Println(out)
+
+	// Output:
+	// [(1+0i) (0+0i) (0+0i)]
+	// [1 1 1 1 1]
 }
+
+
+
+func ExamplePlanD2Z() {
+	N := 4
+	in := make([]float64, N)
+	out := make([]complex128, N/2+1)
+
+	n := []int{N}
+	plan := PlanD2Z(n, in, out, ESTIMATE)
+	defer plan.Destroy()
+
+	in[0] = 1
+	fmt.Println(in)
+	plan.Execute()
+	fmt.Println(out)
+
+	// Output:
+	// [1 0 0 0]
+	// [(1+0i) (1+0i) (1+0i)]
+}
+
+
+func ExamplePlanZ2D() {
+	N := 4
+	in := make([]complex128, N/2+1)
+	out := make([]float64, N)
+
+	n := []int{N}
+	plan := PlanZ2D(n, in, out, ESTIMATE)
+	defer plan.Destroy()
+
+	in[0] = 1
+	fmt.Println(in)
+	plan.Execute()
+	fmt.Println(out)
+
+	// Output:
+	// [(1+0i) (0+0i) (0+0i)]
+	// [1 1 1 1]
+}
+
 
 
 func ExamplePlanZ2Z() {
