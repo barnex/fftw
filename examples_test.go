@@ -2,6 +2,7 @@ package fftw
 
 import (
 	"fmt"
+	"github.com/barnex/matrix"
 )
 
 func ExamplePlanC2C() {
@@ -161,7 +162,7 @@ func ExamplePlanManyC2C() {
 func ExamplePlanManyZ2Z() {
 	n := [2]int{2, 3}
 	data := make([]complex128, n[0]*n[1])
-	matrix := ReshapeZ2(data, n)
+	matrix := matrix.ReshapeZ2(data, n)
 
 	howmany := 1
 	idist := 0   // unused because howmany = 1
