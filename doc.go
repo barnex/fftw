@@ -1,5 +1,5 @@
 /*
- Go wrapper for FFTW3.3.3, statically linked.
+ Go wrapper for FFTW3.3.4, without dependencies. FFTW's C code is embedded in this package, resulting binaries are statically linked.
 
 
  License

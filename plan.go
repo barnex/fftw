@@ -8,8 +8,9 @@ import (
 	"github.com/barnex/fftw/internal/float"
 )
 
-// A Plan contains all information necessary to compute the transform,
-// including the input and output arrays.
+// An FFT Plan is created once to set up an FFT with certain size and input/output arrays.
+// After plan creation, it can be executed quickly and as many times as desired.
+// Creating multiple plans with the same size is cheap after the first one.
 type Plan interface {
 	Execute() // Executes the plan on the input/output arrays passed when creating the plan.
 	Destroy() // Frees the internal resources associated with this plan (not the input/output arrays).

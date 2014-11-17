@@ -22,6 +22,7 @@ func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, i
 
 	p := float.PlanManyDft(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, uint(flags))
 	checkPlan(p, n, howmany, inembed, istride, idist, onembed, ostride, odist, sign, uint(flags))
+	checkC2CSize(n, howmany, len(in), inembed, istride, idist, len(out), onembed, ostride, odist)
 	return &floatHandle{p, unsafe.Pointer(&in[0]), unsafe.Pointer(&out[0])}
 }
 
@@ -59,6 +60,51 @@ func PlanManyR2C(n []int, howmany int, in []float32, inembed []int, istride, idi
 	checkPlan(p, n, howmany, inembed, istride, idist, onembed, ostride, odist, FORWARD, uint(flags))
 	return &floatHandle{p, unsafe.Pointer(&in[0]), unsafe.Pointer(&out[0])}
 }
+
+
+// PlanR2C creates a real-to-complex FFT plan of arbitrary rank. It panics when the plan can not be created.
+//
+// n holds the size of the transform dimensions, len(n) is the transform's rank.
+//
+// The in, out arrays are overwritten during planning (unless FFTW_ESTIMATE is used in the flags). If in == out, the transform is in-place and the input array is overwritten. If in != out, the two arrays must not overlap (but FFTW does not check for this condition).
+//
+// flags is a bitwise OR (‘|’) of zero or more Flags.
+//
+// See the fftw_plan_dft_r2c documentation:
+// 	http://www.fftw.org/doc/Real_002ddata-DFTs.html
+func PlanR2C(n []int, in []float32, out []complex64, flags Flag) Plan {
+	howmany := 1
+	idist := 0
+	odist := 0
+	istride := 1
+	ostride := 1
+	inembed := n
+	onembed := n
+	return PlanManyR2C(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, flags)
+}
+
+
+// PlanC2R creates a complex-to-real FFT plan of arbitrary rank. It panics when the plan can not be created.
+//
+// n holds the size of the transform dimensions, len(n) is the transform's rank.
+//
+// The in, out arrays are overwritten during planning (unless FFTW_ESTIMATE is used in the flags). If in == out, the transform is in-place and the input array is overwritten. If in != out, the two arrays must not overlap (but FFTW does not check for this condition).
+//
+// flags is a bitwise OR (‘|’) of zero or more Flags.
+//
+// See the fftw_plan_dft_r2c documentation:
+// 	http://www.fftw.org/doc/Real_002ddata-DFTs.html
+func PlanC2R(n []int, in []complex64, out []float32, flags Flag) Plan {
+	howmany := 1
+	idist := 0
+	odist := 0
+	istride := 1
+	ostride := 1
+	inembed := n
+	onembed := n
+	return PlanManyC2R(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, flags)
+}
+
 
 // Wrapper for fftwf_plan_many_dft_c2r:
 // 	http://www.fftw.org/doc/Advanced-Real_002ddata-DFTs.html
