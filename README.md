@@ -1,4 +1,4 @@
-#FFTW3 Go interface
+#FFTW3 Go interface [![Build Status](https://travis-ci.org/barnex/fftw.svg)](https://travis-ci.org/barnex/fftw)
 
 Go wrapper for FFTW3, with embedded FFTW source code. There is no dependency on libfftw3, you can just `go get -x github.com/barnex/fftw` (-x to show what it's doing, compilation takes long due to C files).
 
