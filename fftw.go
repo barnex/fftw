@@ -2,8 +2,8 @@ package fftw
 
 import (
 	"fmt"
-	"github.com/barnex/fftw/double"
-	"github.com/barnex/fftw/float"
+	"github.com/barnex/fftw/internal/double"
+	"github.com/barnex/fftw/internal/float"
 	"sync"
 	"unsafe"
 )
