@@ -33,7 +33,7 @@ func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, i
 	return &C2CPlan{unsafe.Pointer(p), in, out}
 }
 
-// PlanC2C creates a complex-to-complex plan of arbitrary rank. It panics when the plan can not be created. 
+// PlanC2C creates a complex-to-complex FFT plan of arbitrary rank. It panics when the plan can not be created. 
 //
 // n holds the size of the transform dimensions, len(n) is the transform's rank. 
 // 
@@ -56,16 +56,12 @@ func PlanC2C(n []int, in []complex64, out []complex64, sign int, flags Flag) *C2
 	return PlanManyC2C(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, flags)
 }
 
-func PlanC2C1D(n0 int, in[]complex64, out []complex64, sign int, flags Flag) *C2CPlan{
-	return PlanC2C([]int{n0}, in, out, sign, flag)
-}
-
-
-
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *C2CPlan) Execute() {
 	float.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *C2CPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
@@ -96,10 +92,12 @@ func PlanManyR2C(n []int, howmany int, in []float32, inembed []int, istride, idi
 	return &R2CPlan{unsafe.Pointer(p), in, out}
 }
 
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *R2CPlan) Execute() {
 	float.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *R2CPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
@@ -129,10 +127,12 @@ func PlanManyC2R(n []int, howmany int, in []complex64, inembed []int, istride, i
 	return &C2RPlan{unsafe.Pointer(p), in, out}
 }
 
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *C2RPlan) Execute() {
 	float.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *C2RPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
@@ -175,10 +175,12 @@ func PlanZ2Z(n []int, in []complex128, out []complex128, sign int, flags Flag) *
 	return PlanManyZ2Z(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, flags)
 }
 
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *Z2ZPlan) Execute() {
 	double.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *Z2ZPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
@@ -209,10 +211,12 @@ func PlanManyD2Z(n []int, howmany int, in []float64, inembed []int, istride, idi
 	return &D2ZPlan{unsafe.Pointer(p), in, out}
 }
 
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *D2ZPlan) Execute() {
 	double.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *D2ZPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
@@ -242,10 +246,12 @@ func PlanManyZ2D(n []int, howmany int, in []complex128, inembed []int, istride, 
 	return &Z2DPlan{unsafe.Pointer(p), in, out}
 }
 
+// Executes the plan on the input/output arrays passed when creating the plan.
 func (p *Z2DPlan) Execute() {
 	double.Execute(p.handle)
 }
 
+// Destroy frees the internal resources associated with this plan.
 func (p *Z2DPlan) Destroy() {
 	lock.Lock()
 	defer lock.Unlock()
