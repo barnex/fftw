@@ -20,6 +20,7 @@ type C2CPlan struct {
 
 // Wrapper for fftwf_plan_many_dft:
 // 	http://www.fftw.org/doc/Advanced-Complex-DFTs.html
+// Panics if the plan cannot be created. 
 func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, idist int,
 	out []complex64, onembed []int, ostride, odist int, sign int, flags Flag) *C2CPlan {
 	lock.Lock()
@@ -32,7 +33,17 @@ func PlanManyC2C(n []int, howmany int, in []complex64, inembed []int, istride, i
 	return &C2CPlan{unsafe.Pointer(p), in, out}
 }
 
-// Provides the functionality of fftwf_plan_dft:
+// PlanC2C creates a complex-to-complex plan of arbitrary rank. It panics when the plan can not be created. 
+//
+// n holds the size of the transform dimensions, len(n) is the transform's rank. 
+// 
+// The in, out arrays are overwritten during planning (unless FFTW_ESTIMATE is used in the flags). If in == out, the transform is in-place and the input array is overwritten. If in != out, the two arrays must not overlap (but FFTW does not check for this condition).
+//
+// sign can be -1 (= FFTW_FORWARD) or +1 (= FFTW_BACKWARD).
+//
+// flags is a bitwise OR (‘|’) of zero or more Flags.
+//
+// See the fftwf_plan_dft documentation:
 // 	http://www.fftw.org/doc/Complex-DFTs.html
 func PlanC2C(n []int, in []complex64, out []complex64, sign int, flags Flag) *C2CPlan {
 	howmany := 1
@@ -44,6 +55,12 @@ func PlanC2C(n []int, in []complex64, out []complex64, sign int, flags Flag) *C2
 	onembed := n
 	return PlanManyC2C(n, howmany, in, inembed, istride, idist, out, onembed, ostride, odist, sign, flags)
 }
+
+func PlanC2C1D(n0 int, in[]complex64, out []complex64, sign int, flags Flag) *C2CPlan{
+	return PlanC2C([]int{n0}, in, out, sign, flag)
+}
+
+
 
 func (p *C2CPlan) Execute() {
 	float.Execute(p.handle)
