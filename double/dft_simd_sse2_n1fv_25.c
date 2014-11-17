@@ -1,7 +1,7 @@
 #define SIMD_HEADER "simd-sse2.h"
 /*
- * Copyright (c) 2003, 2007-11 Matteo Frigo
- * Copyright (c) 2003, 2007-11 Massachusetts Institute of Technology
+ * Copyright (c) 2003, 2007-14 Matteo Frigo
+ * Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
  */
 
 /* This file was automatically generated --- DO NOT EDIT */
-/* Generated on Sun Nov 25 07:36:55 EST 2012 */
+/* Generated on Tue Mar  4 13:46:50 EST 2014 */
 
 #include "codelet-dft.h"
 

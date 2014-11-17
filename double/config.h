@@ -82,7 +82,7 @@
 /* #undef HAVE_ALTIVEC_H */
 
 /* Define to enable AVX optimizations. */
-#define HAVE_AVX 1
+/* #undef HAVE_AVX */
 
 /* Define to 1 if you have the `BSDgettimeofday' function. */
 /* #undef HAVE_BSDGETTIMEOFDAY */
@@ -98,7 +98,7 @@
 
 /* Define to 1 if you have the declaration of `cosl', and to 0 if you don't.
    */
-#define HAVE_DECL_COSL 0
+#define HAVE_DECL_COSL 1
 
 /* Define to 1 if you have the declaration of `cosq', and to 0 if you don't.
    */
@@ -110,7 +110,7 @@
 
 /* Define to 1 if you have the declaration of `memalign', and to 0 if you
    don't. */
-#define HAVE_DECL_MEMALIGN 0
+#define HAVE_DECL_MEMALIGN 1
 
 /* Define to 1 if you have the declaration of `posix_memalign', and to 0 if
    you don't. */
@@ -118,7 +118,7 @@
 
 /* Define to 1 if you have the declaration of `sinl', and to 0 if you don't.
    */
-#define HAVE_DECL_SINL 0
+#define HAVE_DECL_SINL 1
 
 /* Define to 1 if you have the declaration of `sinq', and to 0 if you don't.
    */
@@ -285,9 +285,6 @@
    */
 #define LT_OBJDIR ".libs/"
 
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-/* #undef NO_MINUS_C_MINUS_O */
-
 /* Name of package */
 #define PACKAGE "fftw"
 
@@ -298,7 +295,7 @@
 #define PACKAGE_NAME "fftw"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "fftw 3.3.3"
+#define PACKAGE_STRING "fftw 3.3.4"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "fftw"
@@ -307,7 +304,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "3.3.3"
+#define PACKAGE_VERSION "3.3.4"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
@@ -370,7 +367,7 @@
 #define USING_POSIX_THREADS 1
 
 /* Version number of package */
-#define VERSION "3.3.3"
+#define VERSION "3.3.4"
 
 /* Use common Windows Fortran mangling styles for the Fortran interfaces. */
 /* #undef WINDOWS_F77_MANGLING */

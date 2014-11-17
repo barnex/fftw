@@ -1,7 +1,6 @@
 // Internally used package double provides low-level wrappers for libfftw3
 package double
 
-//#cgo CFLAGS: -mavx
 //#cgo CFLAGS: -std=gnu99 -DHAVE_CONFIG_H
 //#cgo LDFLAGS: -lm
 //#include "fftw3.h"

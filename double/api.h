@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2003, 2007-11 Matteo Frigo
- * Copyright (c) 2003, 2007-11 Massachusetts Institute of Technology
+ * Copyright (c) 2003, 2007-14 Matteo Frigo
+ * Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,9 @@ int X(guru64_kosherp)(int rank, const X(iodim64) *dims,
 /* Note: FFTW_EXTERN is used for "internal" functions used in tests/hook.c */
 
 FFTW_EXTERN printer *X(mkprinter_file)(FILE *f);
+
+printer *X(mkprinter_cnt)(int *cnt);
+printer *X(mkprinter_str)(char *s);
 
 FFTW_EXTERN planner *X(the_planner)(void);
 void X(configure_planner)(planner *plnr);

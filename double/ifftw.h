@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2003, 2007-11 Matteo Frigo
- * Copyright (c) 2003, 2007-11 Massachusetts Institute of Technology
+ * Copyright (c) 2003, 2007-14 Matteo Frigo
+ * Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1026,7 +1026,7 @@ extern unsigned X(random_estimate_seed);
 
 double X(measure_execution_time)(const planner *plnr, 
 				 plan *pln, const problem *p);
-int X(alignment_of)(R *p);
+IFFTW_EXTERN int X(alignment_of)(R *p);
 unsigned X(hash)(const char *s);
 INT X(nbuf)(INT n, INT vl, INT maxnbuf);
 int X(nbuf_redundant)(INT n, INT vl, int which, 

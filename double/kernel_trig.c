@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2003, 2007-11 Matteo Frigo
- * Copyright (c) 2003, 2007-11 Massachusetts Institute of Technology
+ * Copyright (c) 2003, 2007-14 Matteo Frigo
+ * Copyright (c) 2003, 2007-14 Massachusetts Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,10 +27,10 @@
 #  define COS cosl
 #  define SIN sinl
 #  define KTRIG(x) (x##L)
-#  ifndef HAVE_DECL_SINL
+#  if defined(HAVE_DECL_SINL) && !HAVE_DECL_SINL
      extern long double sinl(long double x);
 #  endif
-#  ifndef HAVE_DECL_COSL
+#  if defined(HAVE_DECL_COSL) && !HAVE_DECL_COSL
      extern long double cosl(long double x);
 #  endif
 #elif defined(TRIGREAL_IS_QUAD)
