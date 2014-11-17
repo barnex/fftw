@@ -24,7 +24,7 @@ To perform an FFT, one first creates a Plan for the given dimensions and input/o
 ## Data storage
 
 This package acts on contiguous arrays, even for multi-dimensional input. The package
- 	githbu.com/barnex/matrix
+ 	`github.com/barnex/matrix`
 may be used to easily construct and access multi-dimensional arrays with contiguous underlying storage.
 
 
