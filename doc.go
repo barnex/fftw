@@ -5,17 +5,25 @@ Go wrapper for FFTW3.3.4, without dependencies. FFTW's C code is embedded in thi
 Single and doulbe precission real-to-complex, complex-to-real and complex-to-complex transforms are provided for arbitrary rank and dimensions.
 
 
-Example
+Using Plans
 
-Example of a 1-dimensional complex-to-complex transform on 8 elements, in-place:
+To perform an FFT, one first creates a Plan for the given dimensions and input/output arrays. Once a plan is created, it can be executed rapidly and as many times as desired. E.g.:
 
 	N := 8
 	data := make([]complex64, N)
 	plan := PlanC2C([]int{N}, data, data, FORWARD, ESTIMATE)
 
-	data[0] = 1
+	// data = ...
 	plan.Execute()
-	fmt.Println(data)
+	// use data
+
+
+
+Data storage
+
+This package acts on contiguous arrays, even for multi-dimensional input. The package
+ 	githbu.com/barnex/matrix
+may be used to easily construct and access multi-dimensional arrays with contiguous underlying storage.
 
 
 License
