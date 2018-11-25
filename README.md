@@ -1,9 +1,9 @@
-#FFTW3 Go interface [![GoDoc](https://godoc.org/github.com/barnex/fftw?status.svg)](https://godoc.org/github.com/barnex/fftw)   [![Build Status](https://travis-ci.org/barnex/fftw.svg)](https://travis-ci.org/barnex/fftw)
+# FFTW3 Go interface [![GoDoc](https://godoc.org/github.com/barnex/fftw?status.svg)](https://godoc.org/github.com/barnex/fftw)   [![Build Status](https://travis-ci.org/barnex/fftw.svg)](https://travis-ci.org/barnex/fftw)
 
 Go wrapper for FFTW3.3.4, without dependencies. FFTW's C code is embedded in this package, resulting binaries are statically linked.
 You can just `go get -x github.com/barnex/fftw` (-x to show what it's doing, compilation takes long due to C files).
 
-Single and doulbe precission real-to-complex, complex-to-real and complex-to-complex transforms are provided for arbitrary rank and dimensions.
+Single and double precision real-to-complex, complex-to-real and complex-to-complex transforms are provided for arbitrary rank and dimensions.
 
 
 ## Using Plans

@@ -1,12 +1,11 @@
 // Internally used package float provides low-level wrappers for libfftw3f
 package float
 
-//#cgo CFLAGS: -std=gnu99 -DHAVE_CONFIG_H -fomit-frame-pointer -malign-double -fstrict-aliasing -fno-schedule-insns -ffast-math
+//#cgo CFLAGS: -std=gnu99 -DHAVE_CONFIG_H -fomit-frame-pointer -fstrict-aliasing -ffast-math
 //#cgo LDFLAGS: -lm
 //#include "fftw3.h"
 import "C"
 import "unsafe"
-
 
 // Wrapper for fftwf_plan_many_dft.
 // Internal but exported for use by package fftw.
